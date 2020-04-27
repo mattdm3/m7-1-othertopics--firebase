@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const { createUser } = require('./handlers');
+const { createUser, getUser, handleUpdateUser } = require('./handlers');
 
 require('dotenv').config();
 const PORT = process.env.PORT || 8000;
@@ -25,5 +25,7 @@ express()
   .use(express.urlencoded({ extended: false }))
 
   .post('/users', createUser)
+  .post('/updateUserData', handleUpdateUser)
+
 
   .listen(PORT, () => console.log(`Listening on port ${PORT}`));
